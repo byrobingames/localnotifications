@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension>
+    
+    <assets path="assets/" include="*" />
+    
+    <section if="ios">
+    <ndll name="notifications" />
+    </section>
+    
+    <section if="android">
+    <dependency name="notifications" path="dependencies/android" />
+    <!--<android extension="com.byrobin.Notification.Notifications" /> -->
+    </section>
+    
+</extension>
