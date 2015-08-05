@@ -2,5 +2,5 @@ name=iOS/Android Local Notifications
 description=Implements iOS/Android Local Notifications
 author=Robin Schaafsma (www.byrobingames.com)
 website=http://www.stencyl.com
-version=2.3
+version=2.4
 compatibility=mobile
