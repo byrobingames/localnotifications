@@ -12,29 +12,20 @@ Stencyl extension for "Local Notification" on iOS and Android. This extension al
 
 
 ## How to Install
-Download zip file on the right of the screen. ![download](http://www.byrobingames.com/stencyl/heyzap/download.png) on this page https://github.com/byrobingames/simpleshare<br />
+
+Go to: http://byrobin.nl/store/product/local-notifications-for-ios-android-stencylopenfl/
+
+Add the extension to the cart en proceed with checkout. After you successfully placed the order, you will get an e-mail with the download link or go to “My Account” section where you can also find the download link.
+
+Or 
+
+Use the "Download Zip" from this page.
+
+Free Extension is named “master.zip” when you download.
 
 Install the zip file: Go to : http://community.stencyl.com/index.php/topic,30432.0.html
 
-If you have already install a previous version (2.2 or lower) of Local Notification extension, you will see two extension in "Settings->Extensions". This is because of the renamed folder you just downloaded from GitHub.
-If this is your case, do the following:
-- Go to Settings->Extensions
-- Enable the Local Notification Extension thats not enabled (press green button "Enable")
-- Disable the Local Notification Extension thats not disabled (press red button "Disable")
-- Close your Game
-- Go to "YOURDOCUMENTFOLDER/stencylworks/engine-extensions/" folder
-- Delete the folder "localnotification" and leave the folder "localnotification-master"(thats the new folder name)
-- Open you Game
-- You see now in Settings->Extensions, there is now jus one Local Notification extension.
-- The blocks you already used with previous version subsist.
-
-Or for advanced users:(Not recommended)
-- Unzip localnotification-master.zip you just download
-- Rename folder from "localnotification-master" to "localnotification"
-- Copy the localnotification folder and paste it in "YOURDOCUMENTFOLDER/stencylworks/engine-extensions/"
-- You have to do this every time you download a updated version fom GitHub.
-
-## Documentation and Blocks Example
+## Documentation and Block Examples
 
 - Schedule new local notification with repeat.
 - Cancel all notifications
