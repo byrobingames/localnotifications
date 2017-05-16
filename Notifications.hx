@@ -12,6 +12,8 @@ import openfl.Lib;
 import openfl.utils.JNI;
 #end
 
+import scripts.ByRobinAssets;
+
 class Notifications
 {
     #if ios 
@@ -19,8 +21,9 @@ class Notifications
     private static var setIconBadgeNumber = Lib.load("notifications","set_icon_badge_number",1);
     private static var increaseIconBadgeNumberBy = Lib.load("notifications","increase_icon_badge_number",1);
     private static var decreaseIconBadgeNumberBy = Lib.load("notifications","decrease_icon_badge_number",1);
-    private static var cancelLocalNotifications = Lib.load("notifications","cancel_local_notifications",0);
-    private static var scheduleLocalNotification = Lib.load("notifications","schedule_local_notification",3);
+    private static var cancelLocalNotifications = Lib.load("notifications", "cancel_local_notifications", 0);
+	private static var cancelLocalNotificationsWithId = Lib.load("notifications","cancel_local_notifications_withid",1);
+    private static var scheduleLocalNotification = Lib.load("notifications","schedule_local_notification",1);
 	
     #end
 	
@@ -30,6 +33,7 @@ class Notifications
 	private static var increaseIconBadgeNumberBy:Dynamic;
 	private static var decreaseIconBadgeNumberBy:Dynamic;
 	private static var cancelLocalNotifications:Dynamic;
+	private static var cancelLocalNotificationsWithId:Dynamic;
 	
 	#end
 	
@@ -43,7 +47,7 @@ class Notifications
 		#if android
 		 if(setIconBadgeNumber == null)
             {
-                setIconBadgeNumber = JNI.createStaticMethod("com.byrobin.Notification.NotificationsExtension", "setIconBadge", "(I)V", true);
+                setIconBadgeNumber = JNI.createStaticMethod("com.byrobin.notification.NotificationsExtension", "setApplicationIconBadgeNumber", "(I)Z", true);
             }
             var args = new Array<Dynamic>();
             args.push(number);
@@ -60,7 +64,7 @@ class Notifications
 		#if android
 		if(increaseIconBadgeNumberBy == null)
             {
-                increaseIconBadgeNumberBy = JNI.createStaticMethod("com.byrobin.Notification.NotificationsExtension", "increaseIconBadge", "(I)V", true);
+                increaseIconBadgeNumberBy = JNI.createStaticMethod("com.byrobin.notification.NotificationsExtension", "increaseIconBadge", "(I)Z", true);
             }
             var args = new Array<Dynamic>();
             args.push(number);
@@ -70,14 +74,17 @@ class Notifications
     
     public static function hxDecreaseIconBadgeNumberBy(number:Int = 0):Void
     {
+		trace("decreaseIconBadgeNumberBy0");
 		#if ios
         decreaseIconBadgeNumberBy(number);
 		#end
 		
 		#if android
+		trace("decreaseIconBadgeNumberBy1");
 		if(decreaseIconBadgeNumberBy == null)
             {
-                decreaseIconBadgeNumberBy = JNI.createStaticMethod("com.byrobin.Notification.NotificationsExtension", "decreaseIconBadge", "(I)V", true);
+				trace("decreaseIconBadgeNumberBy2");
+                decreaseIconBadgeNumberBy = JNI.createStaticMethod("com.byrobin.notification.NotificationsExtension", "decreaseIconBadge", "(I)Z", true);
             }
             var args = new Array<Dynamic>();
             args.push(number);
@@ -94,31 +101,45 @@ class Notifications
 		#if android
 		if(cancelLocalNotifications == null)
             {
-                cancelLocalNotifications = JNI.createStaticMethod("com.byrobin.Notification.NotificationsExtension", "cancelAllNotification", "()V", true);
+                cancelLocalNotifications = JNI.createStaticMethod("com.byrobin.notification.NotificationsExtension", "cancelAllNotification", "()V", true);
             }
             var args = new Array<Dynamic>();
             cancelLocalNotifications();
 		#end
     }
-    
-    public static function hxScheduleLocalNotification(message:String = "none", days:Int = 0, hours:Int = 0, minutes:Int = 0, seconds:Int = 0, repeat:Int = 0):Void
+	
+	public static function hxCancelLocalNotificationsWithId(notifid:Int):Void
     {
-        seconds = seconds + (minutes*60) + (hours*3600) + (days*86400);
+		#if ios
+        cancelLocalNotificationsWithId(notifid);
+		#end
+		
+		#if android
+		if(cancelLocalNotificationsWithId == null)
+            {
+                cancelLocalNotificationsWithId = JNI.createStaticMethod("com.byrobin.notification.NotificationsExtension", "cancelNotificationInSlot", "(I)V", true);
+            }
+            var args = new Array<Dynamic>();
+			args.push(notifid);
+            cancelLocalNotificationsWithId(args);
+		#end
+    }
+    
+   public static function hxScheduleLocalNotification():Void
+	{
 		
 		#if ios
-        scheduleLocalNotification(message, seconds, repeat);
+		scheduleLocalNotification(ByRobinAssets.LNJsonString);
 		#end
 		
 		#if android
 
             if(scheduleLocalNotification == null)
             {
-                scheduleLocalNotification = JNI.createStaticMethod("com.byrobin.Notification.NotificationsExtension", "scheduleNotification", "(Ljava/lang/String;II)V", true);
+				scheduleLocalNotification = JNI.createStaticMethod("com.byrobin.notification.NotificationsExtension", "scheduleNotification", "(Ljava/lang/String;)V", true);
             }
             var args = new Array<Dynamic>();
-            args.push(message);
-			args.push(seconds);
-			args.push(repeat);
+			args.push(ByRobinAssets.LNJsonString);
             scheduleLocalNotification(args);
         #end
     }

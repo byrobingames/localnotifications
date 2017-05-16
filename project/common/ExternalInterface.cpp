@@ -47,11 +47,23 @@ void cancel_local_notifications()
 }
 DEFINE_PRIM(cancel_local_notifications, 0);
 
-void schedule_local_notification(value message, value time, value repeat)
+void cancel_local_notifications_withid(value notifid)
+{
+    cancelLocalNWithID(val_int(notifid));
+}
+DEFINE_PRIM(cancel_local_notifications_withid, 1);
+
+/*void schedule_local_notification(value message, value time, value repeat)
 {
     scheduleLocalN(val_string(message), val_int(time), val_int(repeat));
 }
-DEFINE_PRIM(schedule_local_notification, 3);
+DEFINE_PRIM(schedule_local_notification, 3);*/
+
+void schedule_local_notification(value jsonString)
+ {
+ scheduleLocalN(val_string(jsonString));
+ }
+ DEFINE_PRIM(schedule_local_notification, 1);
 
 #endif
 

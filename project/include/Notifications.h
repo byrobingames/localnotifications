@@ -7,7 +7,8 @@ namespace notifications
     void increaseIconBadgeN(int number);
     void decreaseIconBadgeN(int number);
     void cancelLocalN();
-    void scheduleLocalN(const char* message, int time, int repeat);
+    void cancelLocalNWithID(int notifid);
+    void scheduleLocalN(const char* jsonString);
 }
 
 #endif

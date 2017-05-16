@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <palette>
-    <block tag="hxScheduleLocalNotification" spec="Schedule new local notification with this message: %0 . It will be shown in %1 days %2 hours %3 minutes and %4 seconds every %5. [c:notif]" code="Notifications.hxScheduleLocalNotification(~,~,~,~,~,~);" type="action" color="gray" returns="void">
+    <!--<block tag="hxScheduleLocalNotification" spec="Schedule new local notification with this message: %0 . It will be shown in %1 days %2 hours %3 minutes and %4 seconds every %5. [c:notif]" code="Notifications.hxScheduleLocalNotification(~,~,~,~,~,~);" type="action" color="gray" returns="void">
         <fields>
             <text order="0"></text>
             <number order="1"></number>
@@ -20,10 +20,21 @@
                 </choices>
             </dropdown>
         </fields>
+    </block>-->
+    
+    <block tag="hxScheduleLocalNotification" spec="Schedule your local notifications [c:notif]" code="Notifications.hxScheduleLocalNotification();" type="action" color="gray" returns="void">
+        <fields>
+        </fields>
     </block>
     
     <block tag="hxCancelLocalNotifications" spec="Cancel all scheduled local notifications [c:notif]" code="Notifications.hxCancelLocalNotifications();" type="action" color="gray" returns="void">
         <fields>
+        </fields>
+    </block>
+    
+    <block tag="hxCancelLocalNotificationswithid" spec="Cancel scheduled local notifications with id: %0 [c:notif]" code="Notifications.hxCancelLocalNotificationsWithId(~);" type="action" color="gray" returns="void">
+        <fields>
+            <number order="0"></number>
         </fields>
     </block>
     

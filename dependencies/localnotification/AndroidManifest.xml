@@ -1,0 +1,126 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.byrobin.notification" android:versionCode="::APP_BUILD_NUMBER::" android:versionName="::APP_VERSION::" android:installLocation="::ANDROID_INSTALL_LOCATION::">
+    
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    
+    <!--for Samsung-->
+     <uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY"/>
+    <uses-permission android:name="com.sec.android.provider.badge.permission.READ"/>
+    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE"/>
+    
+    <!--for htc-->
+    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT"/>
+    
+    <!--for sony-->
+    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE"/>
+    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE"/>
+    
+    <!--for apex-->
+    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT"/>
+    
+    <!--for solid-->
+    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE"/>
+    
+    <!--for huawei-->
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS"/>
+    
+    <!--for ZUK-->
+    <uses-permission android:name="android.permission.READ_APP_BADGE"/>
+    
+    <!--for OPPO-->
+    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS"/>
+    
+    <!--for EvMe-->
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ"/>
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE"/>
+    
+     <application>
+         <receiver android:name="com.byrobin.notification.BootReceiver" android:exported="true" android:enabled="true">
+             <intent-filter>
+                 <!-- To reschedule alarms which would otherwise be lost after reboot -->
+                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                 <!-- HTC devices and possibly others don't catch BOOT_COMPLETED due to a "fast boot" feature, this should help -->
+                 <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                 <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+             </intent-filter>
+         </receiver>
+         
+         <receiver android:name="com.byrobin.notification.NCReceiver" android:exported="true" android:enabled="true">
+             <intent-filter>
+                 <action android:name="::APP_PACKAGE::.Notification0"/>
+                 <action android:name="::APP_PACKAGE::.Notification1"/>
+                 <action android:name="::APP_PACKAGE::.Notification2"/>
+                 <action android:name="::APP_PACKAGE::.Notification3"/>
+                 <action android:name="::APP_PACKAGE::.Notification4"/>
+                 <action android:name="::APP_PACKAGE::.Notification5"/>
+                 <action android:name="::APP_PACKAGE::.Notification6"/>
+                 <action android:name="::APP_PACKAGE::.Notification7"/>
+                 <action android:name="::APP_PACKAGE::.Notification8"/>
+                 <action android:name="::APP_PACKAGE::.Notification9"/>
+                 <action android:name="::APP_PACKAGE::.Notification10"/>
+                 <action android:name="::APP_PACKAGE::.Notification11"/>
+                 <action android:name="::APP_PACKAGE::.Notification12"/>
+                 <action android:name="::APP_PACKAGE::.Notification13"/>
+                 <action android:name="::APP_PACKAGE::.Notification14"/>
+                 <action android:name="::APP_PACKAGE::.Notification15"/>
+                 <action android:name="::APP_PACKAGE::.Notification16"/>
+                 <action android:name="::APP_PACKAGE::.Notification17"/>
+                 <action android:name="::APP_PACKAGE::.Notification18"/>
+                 <action android:name="::APP_PACKAGE::.Notification19"/>
+                 <action android:name="::APP_PACKAGE::.Notification20"/>
+                 <action android:name="::APP_PACKAGE::.Notification21"/>
+                 <action android:name="::APP_PACKAGE::.Notification22"/>
+                 <action android:name="::APP_PACKAGE::.Notification23"/>
+                 <action android:name="::APP_PACKAGE::.Notification24"/>
+                 <action android:name="::APP_PACKAGE::.Notification25"/>
+                 <action android:name="::APP_PACKAGE::.Notification26"/>
+                 <action android:name="::APP_PACKAGE::.Notification27"/>
+                 <action android:name="::APP_PACKAGE::.Notification28"/>
+                 <action android:name="::APP_PACKAGE::.Notification29"/>
+                 <action android:name="::APP_PACKAGE::.Notification30"/>
+                 <action android:name="::APP_PACKAGE::.Notification31"/>
+                 <action android:name="::APP_PACKAGE::.Notification32"/>
+                 <action android:name="::APP_PACKAGE::.Notification33"/>
+                 <action android:name="::APP_PACKAGE::.Notification34"/>
+                 <action android:name="::APP_PACKAGE::.Notification35"/>
+                 <action android:name="::APP_PACKAGE::.Notification36"/>
+                 <action android:name="::APP_PACKAGE::.Notification37"/>
+                 <action android:name="::APP_PACKAGE::.Notification38"/>
+                 <action android:name="::APP_PACKAGE::.Notification39"/>
+                 <action android:name="::APP_PACKAGE::.Notification40"/>
+                 <action android:name="::APP_PACKAGE::.Notification41"/>
+                 <action android:name="::APP_PACKAGE::.Notification42"/>
+                 <action android:name="::APP_PACKAGE::.Notification43"/>
+                 <action android:name="::APP_PACKAGE::.Notification44"/>
+                 <action android:name="::APP_PACKAGE::.Notification45"/>
+                 <action android:name="::APP_PACKAGE::.Notification46"/>
+                 <action android:name="::APP_PACKAGE::.Notification47"/>
+                 <action android:name="::APP_PACKAGE::.Notification48"/>
+                 <action android:name="::APP_PACKAGE::.Notification49"/>
+                 <action android:name="::APP_PACKAGE::.Notification50"/>
+                 <action android:name="::APP_PACKAGE::.Notification51"/>
+                 <action android:name="::APP_PACKAGE::.Notification52"/>
+                 <action android:name="::APP_PACKAGE::.Notification53"/>
+                 <action android:name="::APP_PACKAGE::.Notification54"/>
+                 <action android:name="::APP_PACKAGE::.Notification55"/>
+                 <action android:name="::APP_PACKAGE::.Notification56"/>
+                 <action android:name="::APP_PACKAGE::.Notification57"/>
+                 <action android:name="::APP_PACKAGE::.Notification58"/>
+                 <action android:name="::APP_PACKAGE::.Notification59"/>
+                 <action android:name="::APP_PACKAGE::.Notification60"/>
+                 <action android:name="::APP_PACKAGE::.Notification61"/>
+                 <action android:name="::APP_PACKAGE::.Notification62"/>
+                 <action android:name="::APP_PACKAGE::.Notification63"/>
+                 
+                 
+             </intent-filter>
+         </receiver>
+         
+    </application>
+	
+</manifest>

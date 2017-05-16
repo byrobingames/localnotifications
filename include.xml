@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension>
     
-    <!--<assets path="assets/" include="*" />-->
     
     <section if="ios">
     <ndll name="notifications" />
+    
+    <dependency name="UserNotifications.framework" />
+    <ios linker-flags="-weak_framework UserNotifications" />
+    
     </section>
     
     <section if="android">
-    <dependency name="notifications" path="dependencies/android" />
-    <!--<android extension="com.byrobin.Notification.Notifications" /> -->
+    <dependency name="notifications" path="dependencies/localnotification" />
     </section>
     
 </extension>
