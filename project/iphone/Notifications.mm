@@ -254,19 +254,19 @@ using namespace notifications;
         }
     
         
-        UNCalendarNotificationTrigger *trigger;
-        
-        if ([repeat isEqualToString:@"no repeat"]){
-            trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:triggerDate repeats:NO];
-
-        }else{
-            trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:triggerDate repeats:YES];
-        }
+        UNCalendarNotificationTrigger *triggerCalendar = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:triggerDate repeats:YES];
+        UNTimeIntervalNotificationTrigger *triggerTime = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:timeInterval repeats:NO];
     
         NSString *identifier = [NSString stringWithFormat:@"%d", notifid];
-        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:identifier
-                                                                              content:content trigger:trigger];
+        UNNotificationRequest *request;
     
+        if ([repeat isEqualToString:@"no repeat"]){
+             request = [UNNotificationRequest requestWithIdentifier:identifier
+                                                            content:content trigger:triggerTime];
+        }else{
+            request = [UNNotificationRequest requestWithIdentifier:identifier
+                                                           content:content trigger:triggerCalendar];
+        }
     
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {

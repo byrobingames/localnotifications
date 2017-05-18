@@ -12,7 +12,7 @@ import openfl.Lib;
 import openfl.utils.JNI;
 #end
 
-import scripts.ByRobinAssets;
+import openfl.Assets;
 
 class Notifications
 {
@@ -127,20 +127,23 @@ class Notifications
     
    public static function hxScheduleLocalNotification():Void
 	{
+		var jsonString = Assets.getText("assets/data/com.byrobingames.manager/notif.json");
+		
+		trace("Testing jsonstring" + jsonString);
 		
 		#if ios
-		scheduleLocalNotification(ByRobinAssets.LNJsonString);
+		scheduleLocalNotification(jsonString);
 		#end
 		
 		#if android
 
-            if(scheduleLocalNotification == null)
-            {
-				scheduleLocalNotification = JNI.createStaticMethod("com.byrobin.notification.NotificationsExtension", "scheduleNotification", "(Ljava/lang/String;)V", true);
-            }
-            var args = new Array<Dynamic>();
-			args.push(ByRobinAssets.LNJsonString);
-            scheduleLocalNotification(args);
+        if(scheduleLocalNotification == null)
+        {
+			scheduleLocalNotification = JNI.createStaticMethod("com.byrobin.notification.NotificationsExtension", "scheduleNotification", "(Ljava/lang/String;)V", true);
+        }
+        var args = new Array<Dynamic>();
+		args.push(jsonString);
+        scheduleLocalNotification(args);
         #end
     }
    

@@ -22,13 +22,14 @@ import org.haxe.extension.Extension;
 import com.byrobin.notification.Common;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.json.JSONException;
 
 public class NotificationsExtension extends Extension {
     
-	//public static void scheduleLocalNotification(int slot, float triggerAfterSecs, String titleText, String subtitleText, String messageBodyText, String tickerText, boolean incrementBadgeCount) {
     public static void scheduleNotification(String jsonString){
-        Log.i(Common.TAG,"scheduleLocalNotification");
+        Log.i(Common.TAG,"scheduleLocalNotification: "+jsonString);
+        
         try
         {
             JSONArray json = new JSONArray(jsonString);
