@@ -33,13 +33,23 @@ See Section how to install
 
 //TODO
 
+## Version History
+- 2.0 release 2015-07-23
+- 2.1 2015-07-24 : BUG FIX On Android when game is force to closed by player, repeat notification does not work. Works only on background. and it works now on < iOS 8  (thanks mdotedot).
+- 2.2 2015-07-26 : On Android when game is created first time Badge number wil set to 0. -  Add icon on blocks.
+- 2.3 2015-07-31 : Now download via GitHub
+- 2.4 2015-08-05 : Comments the assets path in include.xml, assets folder is not needed.
+- 2.5 2015-10-09 : Android Updated android-support-v4.jar to get it work with Stencyl build b9186 and higher
+- 2.5.1(2017-05-16) Tested for Stencyl 3.5, Required byRobin Toolset Extension Manager
+- 2.5.2(2017-05-18): FIX: iOS when selelect no repeat, notification not showing. FIX: single/double quotes does not accepted.
+
 ## Submitting a Pull Request
 
 This software is opensource.</br>
 If you want to contribute you can make a pull request
 
 Need help with a pull request?</br>
-[https://help.github.com/articles/creating-a-pull-request/](https://help.github.com/articles/creating-a-pull-request/}
+[https://help.github.com/articles/creating-a-pull-request/](https://help.github.com/articles/creating-a-pull-request/)
 
 ## Donate
 
