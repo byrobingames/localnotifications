@@ -34,6 +34,7 @@ See Section how to install
 //TODO
 
 ## Version History
+
 - 2.0 release 2015-07-23
 - 2.1 2015-07-24 : BUG FIX On Android when game is force to closed by player, repeat notification does not work. Works only on background. and it works now on < iOS 8  (thanks mdotedot).
 - 2.2 2015-07-26 : On Android when game is created first time Badge number wil set to 0. -  Add icon on blocks.
@@ -47,6 +48,8 @@ See Section how to install
 
 This software is opensource.</br>
 If you want to contribute you can make a pull request
+
+Repository: [https://github.com/byrobingames/localnotifications](https://github.com/byrobingames/localnotifications)
 
 Need help with a pull request?</br>
 [https://help.github.com/articles/creating-a-pull-request/](https://help.github.com/articles/creating-a-pull-request/)
