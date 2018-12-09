@@ -19,7 +19,7 @@ This Extension Required the Toolset Extension Manager [https://byrobingames.gith
 
 ## How to Install
 
-To install this Engine Extension, go to the toolset (byRobin Extension Mananger) in the Extension menu of your game inside Stencyl.</br>
+To install this Engine Extension, go to the toolset (byRobin Extension Mananger) in the Extension menu of your game inside Stencyl.<br/>
 Select the Engine Extension from the left menu and click on "Download"
 
 If you not have byRobin Extension Mananger installed, install this first.
@@ -48,12 +48,12 @@ Go to: [https://byrobingames.github.io](https://byrobingames.github.io)
 
 ## Submitting a Pull Request
 
-This software is opensource.</br>
+This software is opensource.<br/>
 If you want to contribute you can make a pull request
 
 Repository: [https://github.com/byrobingames/localnotifications](https://github.com/byrobingames/localnotifications)
 
-Need help with a pull request?</br>
+Need help with a pull request?<br/>
 [https://help.github.com/articles/creating-a-pull-request/](https://help.github.com/articles/creating-a-pull-request/)
 
 ## Donate
