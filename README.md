@@ -62,6 +62,8 @@ Need help with a pull request?<br/>
 
 ## License
 
+Author: Robin Schaafsma
+
 The MIT License (MIT)
 
 Copyright (c) 2014 byRobinGames [http://www.byrobin.nl](http://www.byrobin.nl)
