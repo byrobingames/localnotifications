@@ -1,14 +1,14 @@
 ## Stencyl Local Notification Extension (Openfl)
 
-For Stencyl 3.3 and above
+For Stencyl 3.4 and above
 
 Stencyl extension for "Local Notification" on iOS and Android. This extension allows you to easily integrate Local Notification on your Stencyl game / application. (http://www.stencyl.com)
 
 ### Important!!
 
-This Extension Required the Toolset Extension Manager http://byrobin.nl/store/product/byrobintoolsetextension/
+This Extension Required the Toolset Extension Manager https://byrobingames.github.io
 
-[![notificationtoolset](http://byrobin.nl/store/wp-content/uploads/sites/4/2016/03/notificationtoolset.png)]
+[![notificationtoolset](https://byrobingames.github.io/img/localnotification/notificationtoolset.png)]
 
 ## Main Features
 
@@ -19,17 +19,9 @@ This Extension Required the Toolset Extension Manager http://byrobin.nl/store/pr
 
 ## How to Install
 
-Go to: http://byrobin.nl/store/product/local-notifications-for-ios-android-stencylopenfl/
+Go to: https://byrobingames.github.io
 
-Add the extension to the cart en proceed with checkout. After you successfully placed the order, you will get an e-mail with the download link or go to “My Account” section where you can also find the download link.
-
-Or 
-
-Use the "Download Zip" from this page.
-
-Free Extension is named “master.zip” when you download.
-
-Install the zip file: Go to : http://community.stencyl.com/index.php/topic,30432.0.html
+See Section how to install
 
 ## Documentation and Block Examples
 
@@ -49,6 +41,6 @@ Install the zip file: Go to : http://community.stencyl.com/index.php/topic,30432
 
 The MIT License (MIT) - LICENSE.md
 
-Copyright © 2014 byRobinGames (http://www.byrobingames.com)
+Copyright © 2014 byRobinGames (http://www.byrobin.nl)
 
 Author: Robin Schaafsma
