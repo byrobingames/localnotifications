@@ -33,6 +33,14 @@ See Section how to install
 
 //TODO
 
+## Submitting a Pull Request
+
+This software is opensource.</br>
+If you want to contribute you can make a pull request
+
+Need help with a pull request?</br>
+[https://help.github.com/articles/creating-a-pull-request/](https://help.github.com/articles/creating-a-pull-request/}
+
 ## Donate
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HKLGFCAGKBMFL)<br />
