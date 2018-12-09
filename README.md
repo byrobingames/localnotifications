@@ -6,9 +6,9 @@ Stencyl extension for "Local Notification" on iOS and Android. This extension al
 
 ### Important!!
 
-This Extension Required the Toolset Extension Manager https://byrobingames.github.io
+This Extension Required the Toolset Extension Manager [https://byrobingames.github.io](https://byrobingames.github.io)
 
-[![notificationtoolset](https://byrobingames.github.io/img/localnotification/notificationtoolset.png)]
+![notificationtoolset](https://byrobingames.github.io/img/localnotification/notificationtoolset.png)
 
 ## Main Features
 
@@ -19,7 +19,7 @@ This Extension Required the Toolset Extension Manager https://byrobingames.githu
 
 ## How to Install
 
-Go to: https://byrobingames.github.io
+Go to: [https://byrobingames.github.io](https://byrobingames.github.io)
 
 See Section how to install
 
@@ -41,6 +41,6 @@ See Section how to install
 
 The MIT License (MIT) - LICENSE.md
 
-Copyright © 2014 byRobinGames (http://www.byrobin.nl)
+Copyright © 2014 byRobinGames [http://www.byrobin.nl](http://www.byrobin.nl)
 
 Author: Robin Schaafsma
