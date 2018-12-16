@@ -1,4 +1,4 @@
-## Stencyl Local Notification Extension (Openfl)
+# Stencyl Local Notification Extension (Openfl)
 
 For Stencyl 3.4 and above
 
