@@ -20,20 +20,54 @@ This Extension Required the Toolset Extension Manager [https://byrobingames.gith
 ## How to Install
 
 To install this Engine Extension, go to the toolset (byRobin Extension Mananger) in the Extension menu of your game inside Stencyl.<br/>
-Select the Engine Extension from the left menu and click on "Download"
+![toolsetextensionlocation](https://byrobingames.github.io/img/toolset/toolsetextensionlocation.png)<br/>
+Select the Extension from the menu and click on "Download"
 
-If you not have byRobin Extension Mananger installed, install this first.
+If you not have byRobin Extension Mananger installed, install this first.<br/>
 Go to: [https://byrobingames.github.io](https://byrobingames.github.io)
+
 
 ## Documentation and Block Examples
 
-- Schedule Local notification in Toolset.
-- Cancel all notifications
-- Set icon badge number to
-- Increase icon badge number by
-- Decrease icon badge number by
+Create your notifications in the Toolset manager.<br/>
+![localnotificationcreate](https://byrobingames.github.io/img/localnotification/localnotificationcreate.png)<br/>
+**NotifId:** Give your notification an id. (Must be unique number between 0 and 63)<br/>
+**Title:** Your notification Title<br/>
+**Message:** Your notification Message<br/>
+**Trigger after(in seconds):** Time when the system should trigger the notification after the Game is open for the first time.<br/>
+**Repeat Every:** The interval at which to reschedule the notification.<br/>
+Value can be set to no repeat, Minute, Hour, Day, Week or Year
 
-//TODO
+<hr/>
+
+**Schedule Local notifications** <br/>
+![localnotificationschedule](https://byrobingames.github.io/img/localnotification/localnotificationschedule.png)<br/>
+
+<hr/>
+
+**Cancel notifications with NotifID** <br/>
+![localnotificationcancelschedulenr](https://byrobingames.github.io/img/localnotification/localnotificationcancelschedulenr.png)<br/>
+
+<hr/>
+
+**Cancel all notifications** <br/>
+![localnotificationcancelscheduleall](https://byrobingames.github.io/img/localnotification/localnotificationcancelscheduleall.png)<br/>
+
+<hr/>
+
+**Set icon badge number to** <br/>
+![localnotificationsetbadge](https://byrobingames.github.io/img/localnotification/localnotificationsetbadge.png)<br/>
+
+<hr/>
+
+**Increase icon badge number by** <br/>
+![localnotificationincreasebadge](https://byrobingames.github.io/img/localnotification/localnotificationincreasebadge.png)<br/>
+
+<hr/>
+
+**Decrease icon badge number by** <br/>
+![localnotificationsetbadge](https://byrobingames.github.io/img/localnotification/localnotificationsetbadge.png)<br/>
+
 
 ## Version History
 
@@ -55,6 +89,14 @@ Repository: [https://github.com/byrobingames/localnotifications](https://github.
 
 Need help with a pull request?<br/>
 [https://help.github.com/articles/creating-a-pull-request/](https://help.github.com/articles/creating-a-pull-request/)
+
+## ANY ISSUES?
+
+Add the issue on GitHub<br/>
+Repository: [https://github.com/byrobingames/localnotifications/issues](https://github.com/byrobingames/localnotifications/issues)
+
+Need help with creating a issue?<br/>
+[https://help.github.com/articles/creating-an-issue/](https://help.github.com/articles/creating-an-issue/)
 
 ## Donate
 
