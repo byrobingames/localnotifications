@@ -16,7 +16,6 @@ This Extension Required the Toolset Extension Manager [https://byrobingames.gith
 - retpeat notification
 - On Android badge number will only work on Samsung, HTC, Sony, Apex and  Solid.
 
-
 ## How to Install
 
 To install this Engine Extension, go to the toolset (byRobin Extension Mananger) in the Extension menu of your game inside Stencyl.<br/>
@@ -25,7 +24,6 @@ Select the Extension from the menu and click on "Download"
 
 If you not have byRobin Extension Mananger installed, install this first.<br/>
 Go to: [https://byrobingames.github.io](https://byrobingames.github.io)
-
 
 ## Documentation and Block Examples
 
