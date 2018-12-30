@@ -14,6 +14,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ApplicationInfo;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.*;
 import android.view.Window;
 import android.util.Log;
 import java.lang.Runnable;
@@ -22,6 +23,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.Calendar;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
+
+import com.byrobin.notification.NCReceiver;
 
 import org.haxe.extension.Extension;
 
@@ -34,15 +37,15 @@ class Common {
 	
 	public static final int MAX_NOTIFICATION_SLOTS = 64; // Maximum number of notification action ids to manage (e.g. 10 -> .Notification0-9)
 	
-	// Tag used for keeping track of last application icon badge count
+        // Tag used for keeping track of last application icon badge count
 	public static final String LAST_BADGE_COUNT_TAG = "lastbadgecount";
 	
 	// Tags used for saving notification attributes to shared preferences for later use
-    public static final String SLOT_TAG = "id";
-	public static final String TITLE_TEXT_TAG = "titletext";
-	public static final String MESSAGE_BODY_TEXT_TAG = "messagetext";
-    public static final String UTC_SCHEDULED_TIME = "scheduledtime";
-    public static final String REPEAT_TIME = "repeattime";
+        public static final String SLOT_TAG = "id";
+        public static final String TITLE_TEXT_TAG = "titletext";
+        public static final String MESSAGE_BODY_TEXT_TAG = "messagetext";
+        public static final String UTC_SCHEDULED_TIME = "scheduledtime";
+        public static final String REPEAT_TIME = "repeattime";
 	
 	public static String getPackageName() {
 		return "::APP_PACKAGE::";
@@ -53,25 +56,26 @@ class Common {
 	}
 	
 	public static SharedPreferences getNotificationSettings(Context context, int slot) {
-		return context.getSharedPreferences(getNotificationName(slot), Context.MODE_WORLD_READABLE);
+                return context.getSharedPreferences(getNotificationName(slot), Context.MODE_PRIVATE);
 	}
     
     public static SharedPreferences getApplicationIconBadgeSettings(Context context) {
-        return context.getSharedPreferences("notificationsiconbadge", Context.MODE_WORLD_READABLE);
+        return context.getSharedPreferences("notificationsiconbadge", Context.MODE_PRIVATE);
     }
 	
 	// Write notification data to preferences
-	public static void writePreference(Context context, int slot, String title, String message, Long alertTime, int repeat) {
+        public static void writePreference(Context context, int slot, String title, String message, Long alertTime, int repeat) {
 		SharedPreferences.Editor editor = getNotificationSettings(context, slot).edit();
 		if(editor == null) {
 			Log.i(TAG, "Failed to write notification to preferences");
 			return;
 		}
-        editor.putInt(SLOT_TAG, slot);
-		editor.putString(TITLE_TEXT_TAG, title);
-		editor.putString(MESSAGE_BODY_TEXT_TAG, message);
-        editor.putLong(UTC_SCHEDULED_TIME, alertTime);
-        editor.putInt(REPEAT_TIME,repeat);
+
+                editor.putInt(SLOT_TAG, slot);
+                editor.putString(TITLE_TEXT_TAG, title);
+                editor.putString(MESSAGE_BODY_TEXT_TAG, message);
+                editor.putLong(UTC_SCHEDULED_TIME, alertTime);
+                editor.putInt(REPEAT_TIME,repeat);
 		boolean committed = editor.commit();
 		
 		if(!committed) {
@@ -93,11 +97,16 @@ class Common {
 			Log.i(TAG, "Failed to erase notification from preferences");
 		}
 	}
-	
+
 	// Schedule a local notification
 	public static PendingIntent scheduleLocalNotification(Context context, int slot, String title, String message, Long alertTime, int repeat) {
 		Log.i(TAG, "Scheduling local notification");
 		Intent alertIntent = new Intent(getNotificationName(slot));
+                ::if (ANDROID_TARGET_SDK_VERSION >= 26)::
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    alertIntent.setClass(context, NCReceiver.class);
+                }
+                ::end::
         
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, slot, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         
@@ -126,7 +135,8 @@ class Common {
 	}
 	
 	// Set application icon badge number
-	public static boolean setApplicationIconBadgeNumber(final Context context, final int number) {
+        public static boolean setApplicationIconBadgeNumber(final Context context, final int number) {
+
 		SharedPreferences.Editor editor = getApplicationIconBadgeSettings(context).edit();
 		if(editor == null) {
 			Log.i(TAG, "Failed to set application icon badge number");
@@ -149,15 +159,21 @@ class Common {
 			new Handler(Looper.getMainLooper()).post(new Runnable() {
 				@Override
 				public void run() {
-					ShortcutBadger.removeCount(context);
+                                    //set iconbadgenumber deprecated in API 26 >
+                                    if (ShortcutBadger.isBadgeCounterSupported(context)) {
+                                        ShortcutBadger.removeCount(context);
+                                     }
 				}
 			});
 		} else {
 			Log.i(TAG, "Setting application icon badge number");
 			new Handler(Looper.getMainLooper()).post(new Runnable() {
 				@Override
-				public void run() {
-					ShortcutBadger.applyCount(context, number);
+                                public void run() {
+                                        //set iconbadgenumber deprecated in API 26 >
+                                        if (ShortcutBadger.isBadgeCounterSupported(context)) {
+                                            ShortcutBadger.applyCount(context, number);
+                                        }
 				}
 			});
 		}

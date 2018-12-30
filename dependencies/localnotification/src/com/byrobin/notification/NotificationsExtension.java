@@ -15,18 +15,27 @@ import android.os.*;
 import java.util.GregorianCalendar;
 import java.util.Map;
 
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 
-import me.leolin.shortcutbadger.ShortcutBadger;
 import org.haxe.extension.Extension;
 
+import com.byrobin.notification.BootReceiver;
 import com.byrobin.notification.Common;
+import com.byrobin.notification.NCReceiver;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
 public class NotificationsExtension extends Extension {
-    
+
+    BroadcastReceiver bootReceiver;
+    BroadcastReceiver ncReceiver;
+    IntentFilter bootIntentFilter;
+    IntentFilter ncIntentFilter;
+
     public static void scheduleNotification(String jsonString){
         Log.i(Common.TAG,"scheduleLocalNotification: "+jsonString);
         
@@ -144,7 +153,7 @@ public class NotificationsExtension extends Extension {
 	}
 	
 	public static boolean setApplicationIconBadgeNumber(int number) {
-		return Common.setApplicationIconBadgeNumber(mainContext, number);
+                return Common.setApplicationIconBadgeNumber(mainContext, number);
 	}
     
     public static boolean increaseIconBadge(int number)
@@ -170,9 +179,32 @@ public class NotificationsExtension extends Extension {
         if(getApplicationIconBadgeNumber() >0){
             setApplicationIconBadgeNumber(0);
         }
+        ::if (ANDROID_TARGET_SDK_VERSION >= 26)::
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            bootReceiver = new BootReceiver();
+            ncReceiver = new NCReceiver();
+
+            bootIntentFilter = new IntentFilter(Intent.ACTION_BOOT_COMPLETED);
+            ncIntentFilter = new IntentFilter();
+            for (int i=0; i<64;i++){
+                ncIntentFilter.addAction("::APP_PACKAGE::.Notification"+i);
+            }
+         }
+        ::end::
         super.onCreate(savedInstanceState);
     }
     
+
+    public void onDestroy() {
+        ::if (ANDROID_TARGET_SDK_VERSION >= 26)::
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mainContext.registerReceiver(ncReceiver, ncIntentFilter);
+            mainContext.registerReceiver(bootReceiver, bootIntentFilter);
+        }
+        ::end::
+        super.onDestroy();
+
+    }
     
     public void onStart()
     {
@@ -180,9 +212,28 @@ public class NotificationsExtension extends Extension {
         if(getApplicationIconBadgeNumber() >0){
             setApplicationIconBadgeNumber(0);
         }
+        ::if (ANDROID_TARGET_SDK_VERSION >= 26)::
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mainContext.unregisterReceiver(bootReceiver);
+            mainContext.unregisterReceiver(ncReceiver);
+        }
+        ::end::
+
         super.onStart();
     }
     
+    public void  onPause()
+    {
+        Log.i(Common.TAG,"onPause");
+        ::if (ANDROID_TARGET_SDK_VERSION >= 26)::
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mainContext.registerReceiver(ncReceiver, ncIntentFilter);
+            mainContext.registerReceiver(bootReceiver, bootIntentFilter);
+        }
+        ::end::
+        super.onPause();
+
+    }
     
     public void onResume()
     {
@@ -190,6 +241,12 @@ public class NotificationsExtension extends Extension {
         if(getApplicationIconBadgeNumber() >0){
             setApplicationIconBadgeNumber(0);
         }
+        ::if (ANDROID_TARGET_SDK_VERSION >= 26)::
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mainContext.unregisterReceiver(bootReceiver);
+            mainContext.unregisterReceiver(ncReceiver);
+        }
+        ::end::
         super.onResume();
         
     }

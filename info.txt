@@ -1,7 +1,7 @@
-name=iOS/Android Local Notifications v2.5.2 (byRobin)
+name=iOS/Android Local Notifications v2.5.3 (byRobin)
 description=Implements iOS/Android Local Notifications
 author=Robin Schaafsma (www.byrobingames.com)
 website=http://www.stencyl.com
-version=2.5.2
+version=2.5.3
 compatibility=mobile
 dependencies=toolset-com.byrobingames.manager-0.0.1

@@ -9,7 +9,11 @@ import openfl.Lib;
 #end
 
 #if android
+#if openfl_legacy
 import openfl.utils.JNI;
+#else
+import lime.system.JNI;
+#end
 #end
 
 import openfl.Assets;
@@ -22,7 +26,7 @@ class Notifications
     private static var increaseIconBadgeNumberBy = Lib.load("notifications","increase_icon_badge_number",1);
     private static var decreaseIconBadgeNumberBy = Lib.load("notifications","decrease_icon_badge_number",1);
     private static var cancelLocalNotifications = Lib.load("notifications", "cancel_local_notifications", 0);
-	private static var cancelLocalNotificationsWithId = Lib.load("notifications","cancel_local_notifications_withid",1);
+    private static var cancelLocalNotificationsWithId = Lib.load("notifications","cancel_local_notifications_withid",1);
     private static var scheduleLocalNotification = Lib.load("notifications","schedule_local_notification",1);
 	
     #end

@@ -14,7 +14,7 @@ This Extension Required the Toolset Extension Manager [https://byrobingames.gith
 
 - works on IOS and android
 - retpeat notification
-- On Android badge number will only work on Samsung, HTC, Sony, Apex and  Solid.
+- On Android badge number will only work on Samsung , HTC, Sony, Apex and  Solid.
 
 ## How to Install
 
@@ -53,17 +53,17 @@ Value can be set to no repeat, Minute, Hour, Day, Week or Year
 
 <hr/>
 
-**Set icon badge number to** <br/>
+**Set icon badge number to** (deprecated in Android Version 8.0 > Will be set automatically when Notification is received)<br/>
 ![localnotificationsetbadge](https://byrobingames.github.io/img/localnotification/localnotificationsetbadge.png)<br/>
 
 <hr/>
 
-**Increase icon badge number by** <br/>
+**Increase icon badge number by** (deprecated in Android Version 8.0 > Will be set automatically when Notification is received)<br/>
 ![localnotificationincreasebadge](https://byrobingames.github.io/img/localnotification/localnotificationincreasebadge.png)<br/>
 
 <hr/>
 
-**Decrease icon badge number by** <br/>
+**Decrease icon badge number by** (deprecated in Android Version 8.0 > Will be set automatically when Notification is received)<br/>
 ![localnotificationsetbadge](https://byrobingames.github.io/img/localnotification/localnotificationsetbadge.png)<br/>
 
 
@@ -77,6 +77,7 @@ Value can be set to no repeat, Minute, Hour, Day, Week or Year
 - 2.5 2015-10-09 : Android Updated android-support-v4.jar to get it work with Stencyl build b9186 and higher
 - 2.5.1(2017-05-16) Tested for Stencyl 3.5, Required byRobin Toolset Extension Manager
 - 2.5.2(2017-05-18): FIX: iOS when selelect no repeat, notification not showing. FIX: single/double quotes does not accepted.
+- 2.5.3(2018-12-30): Fix Android JNI import; Fix when set Android TargetVersion 26.; Set/Increase/Decrease icon badge number is deprecated in Android Version 8 >
 
 ## Submitting a Pull Request
 

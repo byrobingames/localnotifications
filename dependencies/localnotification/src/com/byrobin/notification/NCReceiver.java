@@ -2,6 +2,9 @@ package com.byrobin.notification;
 
 import android.app.Activity;
 import android.app.Notification;
+::if (ANDROID_TARGET_SDK_VERSION >= 26)::
+import android.app.NotificationChannel;
+::end::
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -24,8 +27,14 @@ import org.haxe.extension.Extension;
 import com.byrobin.notification.Common;
 
 public class NCReceiver extends BroadcastReceiver {
+
+        static NotificationManager notificationManager;
+
 	@Override
 	public void onReceive(Context context, Intent intent) {
+
+            Log.i(Common.TAG, "NCReceiver onReceive starts");
+
 		if(context == null || intent == null) {
 			Log.i(Common.TAG, "Received notification presentation broadcast with null context or intent");
 			return;
@@ -35,11 +44,18 @@ public class NCReceiver extends BroadcastReceiver {
 			Log.i(Common.TAG, "Received notification presentation broadcast with null action");
 			return;
 		}
-		presentNotification(context, action); // Everything should be for presenting local device notifications
+                if(action.equals("notification_cancelled"))
+                {
+                        // notification are cancelled by user.
+                         Common.setApplicationIconBadgeNumber(context, 0);
+                }else{
+                    presentNotification(context, action); // Everything should be for presenting local device notifications
+                }
+
 	}
 	
 	private static void presentNotification(Context context, String action) {
-		SharedPreferences prefs = context.getSharedPreferences(action, Context.MODE_WORLD_READABLE);
+                SharedPreferences prefs = context.getSharedPreferences(action, Context.MODE_PRIVATE);
 		if(prefs == null) {
 			Log.i(Common.TAG, "Failed to read notification preference data");
 			return;
@@ -51,18 +67,20 @@ public class NCReceiver extends BroadcastReceiver {
 			return;
 		}
         
-        String title = prefs.getString(Common.TITLE_TEXT_TAG, "");
-        String message = prefs.getString(Common.MESSAGE_BODY_TEXT_TAG, "");
+                String title = prefs.getString(Common.TITLE_TEXT_TAG, "");
+                String message = prefs.getString(Common.MESSAGE_BODY_TEXT_TAG, "");
         
 		//Common.erasePreference(context, slot);
 		
-        Common.setApplicationIconBadgeNumber(context, Common.getApplicationIconBadgeNumber(context) + 1);
+                Common.setApplicationIconBadgeNumber(context, Common.getApplicationIconBadgeNumber(context) + 1);
         
 		sendNotification(context, slot, title, message);
 	}
 	
 	// Actually send the local notification to the device
-	private static void sendNotification(Context context, int slot, String title, String message) {
+        private static void sendNotification(Context context, int slot, String title, String message) {
+            Log.i(Common.TAG, "Start sendNotification");
+
 		Context applicationContext = context.getApplicationContext();
 		if(applicationContext == null) {
 			Log.i(Common.TAG, "Failed to get application context");
@@ -119,6 +137,7 @@ public class NCReceiver extends BroadcastReceiver {
 				String packageName = context.getPackageName();
 				intent = pm.getLaunchIntentForPackage(packageName);
 				intent.addCategory(Intent.CATEGORY_LAUNCHER); // Should already be set, but just in case
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 			}
 		} catch (Exception e) {
 			Log.i(Common.TAG, "Failed to get application launch intent");
@@ -128,13 +147,27 @@ public class NCReceiver extends BroadcastReceiver {
 			Log.i(Common.TAG, "Falling back to empty intent");
 			intent = new Intent();
 		}
-		
-		PendingIntent pendingIntent = PendingIntent.getActivity(applicationContext, slot, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-		NotificationCompat.Builder builder = new NotificationCompat.Builder(applicationContext);
+
+                Log.i(Common.TAG, "Build Notification " + title + " " + message);
+                PendingIntent pendingIntent = PendingIntent.getActivity(applicationContext, slot, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                NotificationCompat.Builder builder = null;
+                builder = new NotificationCompat.Builder(applicationContext);
+
+                ::if (ANDROID_TARGET_SDK_VERSION >= 26)::
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    setupNotificationChannel();
+                     //builder = new NotificationCompat.Builder(applicationContext);
+                    //builder = new NotificationCompat.Builder(applicationContext,"::APP_PACKAGE::");
+                     builder.setChannelId("::APP_PACKAGE::");
+                }
+                ::end::
+
 		builder.setAutoCancel(true);
 		builder.setContentTitle(title);
 		builder.setContentText(message);
 		builder.setTicker("You have a new message from ::APP_TITLE::");
+                builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
 		if(largeIcon != null) {
 			builder.setLargeIcon(largeIcon);
 		}
@@ -143,11 +176,29 @@ public class NCReceiver extends BroadcastReceiver {
 		builder.setOngoing(false);
 		builder.setWhen(System.currentTimeMillis());
 		builder.setDefaults(NotificationCompat.DEFAULT_SOUND | NotificationCompat.DEFAULT_VIBRATE | NotificationCompat.DEFAULT_LIGHTS);
-		builder.build();
+                builder.build();
 		
-		NotificationManager notificationManager = ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE));
+                notificationManager = ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE));
 		if(notificationManager != null) {
-			notificationManager.notify(slot, builder.getNotification());
+                        notificationManager.notify(slot, builder.getNotification());
 		}
+
+            Log.i(Common.TAG, "End sendNotification");
 	}
+
+        ::if (ANDROID_TARGET_SDK_VERSION >= 26)::
+        private static void setupNotificationChannel() {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                NotificationChannel channel = new NotificationChannel("::APP_PACKAGE::", "::APP_TITLE::", NotificationManager.IMPORTANCE_DEFAULT);
+                channel.setShowBadge(true);
+                channel.enableVibration(true);
+                channel.enableLights(true);
+                if(notificationManager != null) {
+                    notificationManager.createNotificationChannel(channel);
+                }else{
+                    Log.i(Common.TAG, "notificationManager is NULL");
+                }
+            }
+        }
+        ::end::
 }
